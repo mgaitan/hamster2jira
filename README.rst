@@ -13,7 +13,7 @@ Install
 
 You can install it using pip::
 
-    $ sudo pip install git+git://github.com/mgaitan/hasmter2jira
+    $ sudo pip install git+git://github.com/mgaitan/hamster2jira.git
 
 Usage
 -----
