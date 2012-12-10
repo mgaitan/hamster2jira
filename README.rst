@@ -1,11 +1,11 @@
-h2dp: Hamster to dotProject logs sync tool
-------------------------------------------
+Hamster to Jira logs sync tool
+--------------------------------
 
 This tool aims to save your time posting your Hamster_ facts to Jira_
 an automatic way.
 
 .. _Hamster: http://projecthamster.wordpress.com/
-.. _Jira: http://dotproject.net/
+.. _Jira: http://www.atlassian.com/es/software/jira/overview
 
 
 Install
