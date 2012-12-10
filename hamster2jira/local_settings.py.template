@@ -1,0 +1,3 @@
+JIRA_BASE_URL = 'https://machinalis.atlassian.net'
+JIRA_USERNAME = 'YOUR_USER'
+JIRA_PASSWORD = 'YOUR_PASSWORD'
