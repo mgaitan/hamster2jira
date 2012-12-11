@@ -38,6 +38,6 @@ TODO
 
 - Manage newEstimate / reduceBy times
 - Summarize worktime
-- Manage ticket status through tickets
+- Manage ticket status (through tags?)
 - Tests
 
