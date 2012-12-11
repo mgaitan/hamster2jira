@@ -2,7 +2,7 @@ Hamster to Jira logs sync tool
 --------------------------------
 
 This tool aims to save your time posting your Hamster_ facts to Jira_
-an automatic way.
+in an automatic way.
 
 .. _Hamster: http://projecthamster.wordpress.com/
 .. _Jira: http://www.atlassian.com/es/software/jira/overview
@@ -11,7 +11,7 @@ an automatic way.
 Install
 -------
 
-You can install it using pip::
+You can install directly from Github it using pip::
 
     $ sudo pip install git+git://github.com/mgaitan/hamster2jira.git
 
@@ -31,12 +31,13 @@ How it works
 
 Suppose you have a Jira project with the key *CPI*, then a hamster fact
 like *"45@CPI*  will add a worklog
-into the issue *CPI-45* on you Jira account (if it exists, of course)
+into the issue *CPI-45* on your Jira account (if it exists, of course)
 
 TODO
 ----
 
 - Manage newEstimate / reduceBy times
 - Summarize worktime
+- Manage ticket status through tickets
 - Tests
 
