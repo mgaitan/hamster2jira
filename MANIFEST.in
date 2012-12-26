@@ -1,4 +1,4 @@
 include README.rst
 include MANIFEST.in
-include h2dp/local_settings.py.template
+include hamster2jira/local_settings.py.template
 include CHANGES
