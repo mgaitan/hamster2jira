@@ -9,6 +9,13 @@ def days_hours_minutes(td):
     return "%dd %dh %dm" % (td.days, td.seconds//3600, (td.seconds//60) % 60)
 
 
+# Status id for reopen is 4, but for transition is 3
+# Jira API sucks. Really
+
+TO_REOPEN = u'3'
+TO_CLOSE = u'2'
+TO_RESOLVE = u'2'
+
 class Command(NoArgsCommand):
     help = "Syncs your hamster's logs into Jira"
 
@@ -20,15 +27,24 @@ class Command(NoArgsCommand):
         print "Logged in..."
         categories = [p.key for p in jira.projects()]
         tag_logged, _ = Tag.objects.get_or_create(name = '_logged_in_dp_')
+
         facts = Fact.objects \
                     .exclude(tags=tag_logged) \
                     .exclude(end_time=None) \
                     .filter(activity__category__name__in=categories)
 
         for f in facts:
+            reopened = False
             try:
                 issue_key = '%s-%s' % (f.category, f.activity.name)
                 issue = jira.issue(issue_key)
+
+                if  issue.fields.status.name == u'Closed':
+                    reopened = True
+                    # reopen to allow worklogs
+                    # TO DO : add an appropiated comment!
+                    jira.transition_issue(issue, TO_REOPEN)
+
             except JIRAError:
                 continue
 
@@ -39,3 +55,6 @@ class Command(NoArgsCommand):
 
             #then mark the fact as logged.
             FactTag.objects.create(fact=f, tag=tag_logged)
+            if reopened:
+                jira.transition_issue(issue, TO_CLOSE)
+

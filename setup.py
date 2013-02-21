@@ -9,7 +9,7 @@ with open('README.rst') as readme:
 
 setup(
     name = 'hamster2jira',
-    version = '0.1',
+    version = '0.2',
     description = 'Post your Hamster logs into Jira',
     long_description = __doc__,
     author = u'Martín Gaitán',
@@ -18,7 +18,9 @@ setup(
     packages = find_packages(),
     package_data={'hamster2jira': ['local_settings.py.template']},
     license = 'GNU GENERAL PUBLIC LICENCE v3.0',
-    install_requires = ['django>=1.2', 'jira-python'],
+    install_requires = ['django>=1.2',
+                        'jira-python',
+                        'requests==0.13.6'],
     classifiers = [
         'Development Status :: 4 - Beta',
         'Environment :: Console',
