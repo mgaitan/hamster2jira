@@ -28,7 +28,6 @@ class Command(NoArgsCommand):
                     options={'server': settings.JIRA_BASE_URL})
 
         print "Logged in..."
-        import ipdb; ipdb.set_trace()
 
         categories = [p.key for p in jira.projects()]
         tag_logged, _ = Tag.objects.get_or_create(name='_logged_')
