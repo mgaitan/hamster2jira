@@ -37,6 +37,12 @@ class RawFactFactory(factory.Factory):
             self.end_time = self.start_time + timedelta(hours=1)
             self.save()
 
+    @factory.post_generation(extract_prefix='logged')
+    def logged(self, create, extracted, **kwargs):
+        if extracted:
+            tag_logged, _ = Tag.objects.get_or_create(name='_logged_')
+            FactTag.objects.create(fact=self, tag=tag_logged)
+
 
 def FactFactory(name=None, **kwargs):
     if name and '@' in name:
