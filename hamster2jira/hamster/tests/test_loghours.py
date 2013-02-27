@@ -37,7 +37,7 @@ class TestLogHour(TestCase):
     def log(self):
         call_command('loghours')
 
-    def test_only_fact_finished_not_logged_and_not_excluded_are_logged(self):
+    def test_only_fact_finished_not_logged_and_not_excluded_are_used(self):
 
         FactFactory('1@CPI', finished=True)
         FactFactory('2@CPINB', finished=True)
