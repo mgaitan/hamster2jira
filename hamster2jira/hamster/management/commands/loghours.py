@@ -28,6 +28,8 @@ class Command(NoArgsCommand):
                     options={'server': settings.JIRA_BASE_URL})
 
         print "Logged in..."
+        import ipdb; ipdb.set_trace()
+
         categories = [p.key for p in jira.projects()]
         tag_logged, _ = Tag.objects.get_or_create(name='_logged_')
 
@@ -46,7 +48,6 @@ class Command(NoArgsCommand):
                     reopened = True
                     # reopen to allow worklogs
                     # TO DO : add an appropiated comment!
-                    import ipdb; ipdb.set_trace()
                     jira.transition_issue(issue, TO_REOPEN)
 
             except JIRAError:
@@ -54,7 +55,12 @@ class Command(NoArgsCommand):
 
             spent = days_hours_minutes(f.duration)
             #and post the fact into dotproject!
-            jira.add_worklog(issue, spent)
+            worklog = jira.add_worklog(issue, spent)
+            worklog.update(comment=f.description)
+
+            #create a tag to associate this worklog whit the fact
+            wl_tag = Tag.objects.create(name='wl%s' % worklog.id)
+            FactTag.objects.create(tag=wl_tag, fact=f)
             print "Succesfully log %s into %s" % (spent, issue_key)
 
             #then mark the fact as logged.
