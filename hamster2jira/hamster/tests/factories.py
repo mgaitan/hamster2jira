@@ -1,4 +1,5 @@
 import factory
+from datetime import timedelta
 from datetime import datetime
 from hamster.models import Category, Fact, Tag, Activity, FactTag
 
@@ -29,6 +30,12 @@ class RawFactFactory(factory.Factory):
         if extracted is not None:
             for tag in extracted:
                 FactTag.objects.create(tag=tag, fact=self)
+
+    @factory.post_generation(extract_prefix='finished')
+    def finished(self, create, extracted, **kwargs):
+        if extracted:
+            self.end_time = self.start_time + timedelta(hours=1)
+            self.save()
 
 
 def FactFactory(name=None, **kwargs):

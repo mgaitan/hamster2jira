@@ -23,7 +23,6 @@ class Command(NoArgsCommand):
     help = "Syncs your hamster's logs into Jira"
 
     def handle_noargs(self, **options):
-        import ipdb; ipdb.set_trace()
         jira = JIRA(basic_auth=(settings.JIRA_USERNAME, settings.JIRA_PASSWORD),
                     options={'server': settings.JIRA_BASE_URL})
 
