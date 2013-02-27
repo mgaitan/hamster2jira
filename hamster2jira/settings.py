@@ -28,13 +28,14 @@ DATABASES = {
 SECRET_KEY = 'can_9pxy&k4r_9r3v^lmox&59!ly0j7e08o4$+rlfzypr#*e_8'
 
 INSTALLED_APPS = (
-    'hamster2jira.hamster'
+    'hamster2jira.hamster',
+    'django_nose',
 )
 
 
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
 # Import local_settings file
-
-
 try:
     execfile(os.path.expanduser('~/.hamster2jira/local_settings.py'))
 except IOError:

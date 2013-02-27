@@ -11,9 +11,9 @@ in an automatic way.
 Install
 -------
 
-You can install directly from Github it using pip::
+You can install it directly from Github using pip::
 
-    $ sudo pip install git+git://github.com/mgaitan/hamster2jira.git
+    $ pip install git+git://github.com/mgaitan/hamster2jira.git
 
 Usage
 -----

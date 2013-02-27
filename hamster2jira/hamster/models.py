@@ -2,7 +2,7 @@
 from django.db import models
 
 class Category(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, unique=True)
     color_code = models.CharField(max_length=100, blank=True)
     category_order = models.IntegerField(null=True, blank=True)
@@ -17,7 +17,7 @@ class Category(models.Model):
         return '<Category: %s>' % self
 
 class Activity(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, blank=True)
     work = models.IntegerField(null=True, blank=True)
     activity_order = models.IntegerField(null=True, blank=True)
@@ -38,7 +38,7 @@ class Activity(models.Model):
 
 
 class Tag(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, )
     autocomplete = models.BooleanField(blank=True)
     class Meta:
@@ -58,7 +58,7 @@ class FactTag(models.Model):
 
 
 class Fact(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     activity = models.ForeignKey(Activity)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField(null=True, blank=True)
