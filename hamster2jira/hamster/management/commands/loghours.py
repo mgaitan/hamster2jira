@@ -44,12 +44,12 @@ class Command(NoArgsCommand):
                 issue_key = '%s-%s' % (f.category, f.activity.name)
                 issue = jira.issue(issue_key)
 
-                if  issue.fields.status.name == u'Closed':
+                if  issue.fields.status.name in ('Closed', 'Resolve'):
                     reopened = True
                     # reopen to allow worklogs
-                    # TO DO : add an appropiated comment!
                     jira.transition_issue(issue, TO_REOPEN)
-
+                    jira.add_comment(issue, 'hamster2jira: Automatically reopened for a'
+                                            'while to allow add a worklog')
             except JIRAError:
                 continue
 
